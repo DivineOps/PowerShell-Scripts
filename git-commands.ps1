@@ -12,3 +12,12 @@ git push origin master
 
 #link to git cache store
 #https://gitcredentialstore.codeplex.com/
+
+#current repo status
+git status 
+
+#file changes diff 
+git diff
+
+#dif from global repo
+ git diff HEAD^
