@@ -9,3 +9,6 @@ git commit -m "My commit message"
 
 #push to remote repo
 git push origin master
+
+#link to git cache store
+#https://gitcredentialstore.codeplex.com/
