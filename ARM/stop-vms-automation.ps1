@@ -11,18 +11,36 @@ $Cred = Get-AutomationPSCredential -Name $AutomationCredentialAssetName
 Add-AzureAccount -Credential $Cred | Out-Null
 Add-AzureRmAccount -Credential $Cred | Out-Null
 
-# Get a list of Azure VMs
-$vmList = Get-AzureRmVM 
-Write-Output "Number of Virtual Machines found in subscription: [$($vmList.Count)] Name(s): [$($vmList.name  -join ", ")]"
+# Get a list of Azure ARM VMs
+$vmArmList = Get-AzureRmVM 
+Write-Output "Number of ARM Virtual Machines found in subscription: [$($vmArmList.Count)] Name(s): [$($vmArmList.name  -join ", ")]"
 
-# Stop all running VMs in ResourceGroup
-foreach($vm in $vmList){   
+# Stop all running ARM VMs in Subscription
+foreach($vm in $vmArmList){   
 	$vmStatus = Get-AzureRmVM -ResourceGroupName $vm.ResourceGroupName -Name $vm.Name -Status
 	# Stop running VMs
 	if($vmStatus.Statuses | where Code -match "PowerState/running")  
 	{
 		Write-Output "Stopping VM [$($vm.Name)]"
 		$vm | Stop-AzureRmVM -Force
+	}
+	else {
+		Write-Output "VM [$($vm.Name)] is already deallocated!"
+	}
+}
+
+# Get a list of Azure ASM VMs
+$vmAsmList = Get-AzureVM 
+Write-Output "Number of ASM Virtual Machines found in subscription: [$($vmAsmList.Count)] Name(s): [$($vmAsmList.name  -join ", ")]"
+
+# Stop all running ASM VMs in Subscription
+foreach($vm in $vmAsmList){   
+	$vmStatus = Get-AzureVm -ServiceName $vm.ServiceName -Name $vm.Name
+	# Stop running VMs
+	if($vmStatus.PowerState -match "Started")  
+	{
+		Write-Output "Stopping VM [$($vm.Name)]"
+		$vm | Stop-AzureVM -Force
 	}
 	else {
 		Write-Output "VM [$($vm.Name)] is already deallocated!"
