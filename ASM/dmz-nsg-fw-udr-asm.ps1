@@ -56,7 +56,7 @@
     $subID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
   # VM Account, Location, and Storage Details
-    $LocalAdmin = "theAdmin"
+    $LocalAdmin = "itadmin"
     $DeploymentLocation = "Central US"
     $StorageAccountName = "vmstore02"
 
