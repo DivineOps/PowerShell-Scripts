@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+
+        "vmName": {
+            "value": "apachetest02p.dev.az1.s.com"
+        },
+        "vmSize": {
+            "value": "Standard_A1"
+        },
+		"availabilitySetName": {
+            "value": "apachetestAvSet"
+        },
+        "adminUserName": {
+            "value": "ch5azure"
+        },
+        "adminPassword": {
+            "value": "azurePass2016!"
+        },
+		"location": {
+            "value": "EastUS"
+        },
+		"existingVirtualNetworkName": {
+            "value": "Sears-Azure"
+        },
+		"existingVirtualNetworkResourceGroup": {
+            "value": "Sears-CloudVPN"
+        },
+		"subnetName": {
+            "value": "Test-Net"
+        },
+		"dnsNameForPublicIP": {
+            "value": "apachetest02p-dev-az1-s-com"
+        },
+		"osType": {
+            "value": "Linux"
+        },
+		"osDiskVhdUri": {
+            "value": "https://cloudvpnstore1.blob.core.windows.net/vhds/apachetest02p.dev.az1.s.com.vhd"
+        },
+    }
+}

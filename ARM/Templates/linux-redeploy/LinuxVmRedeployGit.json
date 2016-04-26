@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/VM_IP.json",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -7,14 +7,20 @@
     },
     "vmSize": {
       "type": "string",
-      "defaultValue": "Standard_A1"
+      "defaultValue": "Standard_DS2"
+    },
+    "adminUserName": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "securestring"
     },
     "networkInterfaceId": {
       "type": "string"
     }
   },
   "variables": {
-    "availabilitySetName": "testav"
+    "availabilitySetName": "KHDME2WNAPPPPete-SSD-AS"
   },
   "resources": [
     {
@@ -29,28 +35,36 @@
         "storageProfile": {
           "osDisk": {
             "osType": "Windows",
-            "name": "testvm1",
-           
-            "createOption": "FromImage",
+            "name": "KHDME2WAPPP-osDisk.2aff7b15-5c86-4ae8-b7eb-75dbcdaf738e.vhd",
+            "createOption": "Fromimage",
+           // "createOption": "Attach",
+            "image": {
+              "uri": "https://khdmstorageprodwebssd01.blob.core.windows.net/vhdimage/appvmtemplatep-osdisk.019456a1-d5f0-4dc0-a763-d2d50a8ecafc.vhd"
+            },
             "vhd": {
-              "uri": "https://vhdsarm.blob.core.windows.net/vhds/win16201628152527.vhd"
+              "uri": "https://khdmstorageprodwebssd01.blob.core.windows.net/vhds/KHDME2WNAPPP006-osDisk-13jan2016k1700pm.vhd"
             },
             "caching": "ReadWrite"
           }
 
         },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
         "networkProfile": { "networkInterfaces": [ { "id": "[parameters('networkInterfaceId')]" } ] },
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": true,
-            "storageUri": "https://esudiagnostics.blob.core.windows.net/"
+            "storageUri": "https://khdmstorageprodweb.blob.core.windows.net/"
           }
         },
 
       },
       "name": "[parameters('vmName')]",
       "type": "Microsoft.Compute/virtualMachines",
-      "location": "eastus"
+      "location": "eastus2"
     }
   ]
 }

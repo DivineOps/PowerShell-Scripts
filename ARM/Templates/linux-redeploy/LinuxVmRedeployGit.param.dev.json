@@ -1,0 +1,22 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+
+        "vmName": {
+            "value": "KHDME2WNPete"
+        },
+        "vmSize": {
+            "value": "Standard_DS2"
+        },
+        "adminUserName": {
+            "value": "a-ops2"
+        },
+        "adminPassword": {
+            "value": "<removed>"
+        },
+        "networkInterfaceId": {
+            "value": "/subscriptions/84b32d60-7c11-4fbb-bccf-76d428622036/resourceGroups/PeteKHDTemp/providers/Microsoft.Network/networkInterfaces/KHDME2WNAPPPPete"
+        }
+    }
+}
