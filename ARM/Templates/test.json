@@ -1,0 +1,56 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/VM_IP.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string"
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_A1"
+    },
+    "networkInterfaceId": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "availabilitySetName": "testav"
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-06-15",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySetName'))]"
+        },
+        "storageProfile": {
+          "osDisk": {
+            "osType": "Windows",
+            "name": "testvm1",
+           
+            "createOption": "FromImage",
+            "vhd": {
+              "uri": "https://vhdsarm.blob.core.windows.net/vhds/win16201628152527.vhd"
+            },
+            "caching": "ReadWrite"
+          }
+
+        },
+        "networkProfile": { "networkInterfaces": [ { "id": "[parameters('networkInterfaceId')]" } ] },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true,
+            "storageUri": "https://esudiagnostics.blob.core.windows.net/"
+          }
+        },
+
+      },
+      "name": "[parameters('vmName')]",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "eastus"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "virtualNetworkName": {
+      "value": "testasavnet"
+    },
+    "virtualNetworkExistingRGName": {
+      "value": "testasa"
+    },
+    "virtualNetworkAddressPrefix": {
+      "value": "10.10.0.0/16"
+    },
+    "vnetNewOrExisting": {
+      "value": "new"
+    },
+	"Subnet1Prefix": {
+      "value": "10.10.1.0/28"
+    },
+	"Subnet1Name": {
+      "value": "InternalSub1"
+    },
+	"subnet1StartAddress": {
+      "value": "10.10.1.4"
+    },
+	"Subnet2Prefix": {
+      "value": "10.10.2.0/24"
+    },
+	"Subnet2Name": {
+      "value": "InternalSub2"
+    },
+	"subnet2StartAddress": {
+      "value": "10.10.2.4"
+    },
+	"Subnet3Prefix": {
+      "value": "10.10.3.0/24"
+    },
+	"Subnet3Name": {
+      "value": "InternalSub3"
+    },
+	"subnet3StartAddress": {
+      "value": "10.10.3.4"
+    },
+	"Subnet4Prefix": {
+      "value": "10.10.4.0/24"
+    },
+	"Subnet4Name": {
+      "value": "InternalSub4"
+    },
+	"subnet4StartAddress": {
+      "value": "10.10.4.4"
+    },
+    "adminUsername": {
+      "value" : "itadmin"
+    },
+    "adminPassword": {
+      "value" : "p@rol4ik"
+    },
+	"authenticationType": {
+      "value" : "password"
+    },
+	"vmName": {
+      "value" : "asa1"
+    },
+	"newStorageAccountName": {
+      "value" : "testasastorage"
+    },
+	"storageAccountNewOrExisting": {
+      "value" : "new"
+    },
+	"storageAccountExistingRG": {
+      "value" : "testasa"
+    },
+	"publicIPAddressName": {
+      "value" : "asa1_ip"
+    },
+	"publicIPDnsName": {
+      "value" : "asa1"
+    },
+	"publicIPNewOrExisting": {
+      "value" : "new"
+    },
+	"vmSize": {
+      "value" : "Standard_D3"
+    },	
+  }
+}
